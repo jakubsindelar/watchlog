@@ -7,8 +7,27 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <header>
+      <h1>WatchLog</h1>
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Users', users_path %></li>
+        <% if user_signed_in? %>
+        <li><%= link_to 'Log out', destroy_user_session_path %></li>
+        <% else %>
+        <li><%= link_to 'Log in', new_user_session_path %></li>
+        <% end %>
+      </ul>
+      <div id="message">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+    </header>
+    <section id="main">
+      <%= yield %>
+    </section>
+    <footer>
+      <p>&copy; <a itemprop="url" href="mailto:pdostal@pdostal.cz/">Pavel Dostál</a></p>
+    </footer>
   </body>
 </html>
